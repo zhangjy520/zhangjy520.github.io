@@ -34,3 +34,10 @@ npm install hexo-generator-search --save
 npm install hexo-generator-tag --save
 npm install hexo-deployer-git --save
 npm install hexo-generator-sitemap --save
+
+#
+提交到gitblog步骤
+1 hexo clean
+2 hexo g
+3 将相关文件复制到 git仓库 zhangjy520.github.io
+4 提交该仓库代码即可
