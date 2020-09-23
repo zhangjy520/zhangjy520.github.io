@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 个人博客搭建本地文件
 
 \blog\zjy\source\_posts   下写md文件
@@ -42,12 +41,10 @@ npm install hexo-deployer-git --save
 npm install hexo-generator-sitemap --save
 
 # 提交到gitblog步骤
+hexo clean
 
-1 hexo clean
-2 hexo g
-3 将相关文件复制到 git仓库 zhangjy520.github.io
-4 提交该仓库代码即可
-=======
-# zhangjy520.github.io
-personal blog
->>>>>>> 0575e2e3d868b940fddf948f3e1f8a6055c658bd
+hexo g
+
+将相关文件复制到 git仓库 zhangjy520.github.io
+
+提交该仓库代码即可
