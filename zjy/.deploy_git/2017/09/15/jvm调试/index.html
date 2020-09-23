@@ -18,7 +18,7 @@
 <meta property="og:url" content="http://zjy.com/2017/09/15/jvm调试/index.html">
 <meta property="og:site_name" content="zhang jian yu">
 <meta property="og:description" content="查看某id相关的子线程ps -Lf 29295|wc -l 查看 jvm线程情况jstack pid  jstack pid &amp;gt;1.txt (输出到文件) 通过以上命令，发现，大多数线程处于  time_wating状态的线程占了 90%  .分析发现是程序代码有问题，对异常链接没有显示释放关闭等操作，才导致一旦出错，这个线程就一直不释放，线程数量一直增加。   查看tcp ip 线程链接情">
-<meta property="og:updated_time" content="2017-09-22T07:37:18.537Z">
+<meta property="og:updated_time" content="2020-09-23T03:35:53.357Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="jvm调试- tomcat假死-优化tomcat配置">
 <meta name="twitter:description" content="查看某id相关的子线程ps -Lf 29295|wc -l 查看 jvm线程情况jstack pid  jstack pid &amp;gt;1.txt (输出到文件) 通过以上命令，发现，大多数线程处于  time_wating状态的线程占了 90%  .分析发现是程序代码有问题，对异常链接没有显示释放关闭等操作，才导致一旦出错，这个线程就一直不释放，线程数量一直增加。   查看tcp ip 线程链接情">
@@ -106,7 +106,7 @@
 </code></pre><h2 id="查看-jvm线程情况"><a href="#查看-jvm线程情况" class="headerlink" title="查看 jvm线程情况"></a>查看 jvm线程情况</h2><pre><code>jstack pid 
 jstack pid &gt;1.txt (输出到文件)
 </code></pre><p>通过以上命令，发现，大多数线程处于  time_wating状态的线程占了 90%  .分析发现是程序代码有问题，对异常链接没有显示释放关闭等操作，才导致一旦出错，这个线程就一直不释放，线程数量一直增加。  </p>
-<h2 id="查看tcp-ip-线程链接情况"><a href="#查看tcp-ip-线程链接情况" class="headerlink" title="查看tcp ip 线程链接情况"></a>查看tcp ip 线程链接情况</h2><p>netstat -n | awk ‘/^tcp/ {++S[$NF]} END {for(a in S) print a, S[a]}’ </p>
+<h2 id="查看tcp-ip-线程链接情况"><a href="#查看tcp-ip-线程链接情况" class="headerlink" title="查看tcp ip 线程链接情况"></a>查看tcp ip 线程链接情况</h2><p>netstat -np | grep tcp<br>统计<br>netstat -n | awk ‘/^tcp/ {++S[$NF]} END {for(a in S) print a, S[a]}’ </p>
 <h2 id="删除docker某个镜像的相关容器"><a href="#删除docker某个镜像的相关容器" class="headerlink" title="删除docker某个镜像的相关容器"></a>删除docker某个镜像的相关容器</h2><pre><code>sudo docker ps -a | awk &apos;{ print $1,$2 }&apos; | grep  这里是镜像的名称/或者id| awk &apos;{print $1 }&apos; | xargs -I {} sudo docker rm {}
 </code></pre><h2 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h2><pre><code>线上tomcat总是假死：所谓假死，就是tomcat进程并没有关闭，并且也没有异常日志，一切看似正常，但是tomcat就是访问不到，不是找不到地址，而是响应超时超时超时!
 通过 
@@ -311,6 +311,14 @@ LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/apr/lib export LD_LIBRARY_PATH
 </div>
 
 
+<div class="next">
+<a href="/2017/11/20/服务器定时任务，部署相关/"  title="mysql数据库灾备方案——chapter01（定时任务全备份）">
+ <strong>下一篇：</strong><br/> 
+ <span>mysql数据库灾备方案——chapter01（定时任务全备份）
+</span>
+</a>
+</div>
+
 </nav>
 
 	
@@ -385,7 +393,7 @@ LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/apr/lib export LD_LIBRARY_PATH
         
           <li>
             
-            	<a href="http://blog.csdn.net/" target="_blank" title="一个面向程序员交流分享的新一代社区">CSDN</a>
+            	<a href="http://blog.csdn.net/zjy1211079133?ref=toolbar" target="_blank" title="一个面向程序员交流分享的新一代社区">CSDN</a>
             
           </li>
         
@@ -454,7 +462,7 @@ LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/apr/lib export LD_LIBRARY_PATH
 		
 
 		<p class="copyright">
-		Powered by <a href="http://www.baidu.com" target="_blank" title="zjy">zjy</a> and Theme by <a href="https://github.com/wuchong/jacman" target="_blank" title="Jacman">zjy</a> © 2017 
+		Powered by <a href="http://www.baidu.com" target="_blank" title="zjy">zjy</a> and Theme by <a href="https://github.com/wuchong/jacman" target="_blank" title="Jacman">zjy</a> © 2020 
 		
 		<a href="/about" target="_blank" title="zjy">zjy</a>
 		
